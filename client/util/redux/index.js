@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import messages from './messageReducer'
+import correlations from './correlationsReducer'
 
 export default combineReducers({
-  messages,
+  correlations
 })

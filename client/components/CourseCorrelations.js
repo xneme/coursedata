@@ -1,57 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { Select } from 'semantic-ui-react'
 
-const mockData = [
-  {
-    name: 'Tietorakenteet ja algoritmit',
-    correlations: [
-      {
-        course: 'Tietorakenteet ja algoritmit',
-        correlation: 1.0
-      },
-      {
-        course: 'Ohjelmoinnin perusteet',
-        correlation: 0.45
-      },
-      {
-        course: 'Ohjelmoinnin jatkokurssi',
-        correlation: 0.1
-      }
-    ]
-  },
-  {
-    name: 'Tietokoneen toiminta',
-    correlations: [
-      {
-        course: 'Programming in C',
-        correlation: 0.6
-      },
-      {
-        course: 'Ohjelmoinnin perusteet',
-        correlation: 0.45
-      },
-      {
-        course: 'Ohjelmoinnin jatkokurssi',
-        correlation: 0.1
-      }
-    ]
-  }
-]
+import { getCorrelationsAction } from 'Utilities/redux/correlationsReducer'
 
 export default () => {
-  const [courses, setCourses] = useState(mockData)
+  const dispatch = useDispatch()
+  const correlations = useSelector((store) => store.correlations.data)
   const [course, setCourse] = useState(null)
 
-  if (!courses) return null
+  useEffect(() => {
+    dispatch(getCorrelationsAction())
+  }, [])
+
+  if (!correlations) return null
 
   return (
     <>
       <Select
-        options={courses.map((c, i) => ({ key: i, value: i, text: c.name }))}
+        options={correlations.map((c, i) => ({
+          key: i,
+          value: i,
+          text: c.name
+        }))}
         placeholder="Pick a course."
-        onChange={(e, d) => setCourse(courses[d.value])}
+        onChange={(e, d) => setCourse(correlations[d.value])}
       />
       {course ? (
         <HighchartsReact
