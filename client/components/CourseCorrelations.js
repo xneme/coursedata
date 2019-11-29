@@ -47,7 +47,7 @@ export default () => {
             series: [
               {
                 name: 'Relevant courses',
-                color: '#FFD700',
+                color: '#0091EA',
                 data: course.correlations.map((corr) => corr.correlation)
               }
             ]
