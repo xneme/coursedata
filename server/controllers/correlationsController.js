@@ -7,12 +7,12 @@ const mankeli = ({ courses }) => {
     const { correlations } = courses[k]
     const corrkeys = Object.keys(correlations)
     var acualcorrs = corrkeys.reduce((corracc, corrk) => {
-      return corracc.concat({ name: corrk, correlation: correlations[corrk] })
+      return corracc.concat({ course: corrk, correlation: correlations[corrk] })
     }, [])
 
     return acc.concat({
       name: k,
-      correlations: acualcorrs.filter((c) => c.correlation > 0.2)
+      correlations: acualcorrs.filter((c) => c.correlation > 0.3)
     })
   }, [])
 }
