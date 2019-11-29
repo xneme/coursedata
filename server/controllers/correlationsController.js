@@ -12,7 +12,7 @@ const mankeli = ({ courses }) => {
 
     return acc.concat({
       name: k,
-      correlations: acualcorrs.filter((c) => c.correlation > 0.3)
+      correlations: acualcorrs.filter((c) => c.correlation > 0.2)
     })
   }, [])
 }
