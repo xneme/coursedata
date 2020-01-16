@@ -12,7 +12,7 @@ const logger = winston.createLogger({
     //
     // new winston.transports.File({ filename: 'error.log', level: 'error' }),
     // new winston.transports.File({ filename: 'combined.log' }),
-  ],
+  ]
 })
 
 //
@@ -22,7 +22,7 @@ const logger = winston.createLogger({
 
 if (!inProduction) {
   logger.add(new winston.transports.Console({
-    format: winston.format.simple(),
+    format: winston.format.simple()
   }))
 }
 

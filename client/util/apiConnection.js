@@ -15,7 +15,7 @@ const callApi = async (url, method = 'get', data) => {
     method,
     url,
     data,
-    headers,
+    headers
   })
 }
 
@@ -27,8 +27,8 @@ export default (route, prefix, method = 'get', data, query) => (
       method,
       data,
       prefix,
-      query,
-    },
+      query
+    }
   }
 )
 
@@ -36,12 +36,12 @@ export default (route, prefix, method = 'get', data, query) => (
  * This is a redux middleware used for tracking api calls
  */
 
-export const handleRequest = store => next => async (action) => {
+export const handleRequest = (store) => (next) => async (action) => {
   next(action)
   const { requestSettings } = action
   if (requestSettings) {
     const {
-      route, method, data, prefix, query,
+      route, method, data, prefix, query
     } = requestSettings
     try {
       const res = await callApi(route, method, data)

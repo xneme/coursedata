@@ -1,0 +1,9 @@
+POST http://localhost:8000/api/surprisegrades
+Content-Type: application/json
+
+{
+  "Tietorakenteet ja algoritmit": 5,
+  "Ohjelmoinnin perusteet": 5,
+  "Design and Analysis of Algorithms": 5,
+  "Kandidaatin tutkielma": 5
+}

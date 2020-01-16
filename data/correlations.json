@@ -1,36 +1,18 @@
-[
-  {
-    "name": "Tietorakenteet ja algoritmit",
-    "correlations": [
-      {
-        "course": "Tietorakenteet ja algoritmit",
-        "correlation": 1.0
-      },
-      {
-        "course": "Ohjelmoinnin perusteet",
-        "correlation": 0.45
-      },
-      {
-        "course": "Ohjelmoinnin jatkokurssi",
-        "correlation": 0.1
+{
+  "courses": {
+    "Tietorakenteet ja algoritmit": {
+      "correlations": {
+        "Tietorakenteet ja algoritmit": 1.0,
+        "Ohjelmoinnin perusteet": 0.45,
+        "Ohjelmoinnin jatkokurssi": 0.1
       }
-    ]
-  },
-  {
-    "name": "Tietokoneen toiminta",
-    "correlations": [
-      {
-        "course": "Programming in C",
-        "correlation": 0.6
-      },
-      {
-        "course": "Ohjelmoinnin perusteet",
-        "correlation": 0.45
-      },
-      {
-        "course": "Ohjelmoinnin jatkokurssi",
-        "correlation": 0.1
+    },
+    "Tietokoneen toiminta": {
+      "correlations": {
+        "Programming in C": 0.6,
+        "Ohjelmoinnin perusteet": 0.45,
+        "Ohjelmoinnin jatkokurssi": 0.1
       }
-    ]
+    }
   }
-]
+}

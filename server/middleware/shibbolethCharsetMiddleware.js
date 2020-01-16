@@ -3,7 +3,7 @@ const shibbolethHeaders = [
   'givenname', // First name
   'mail', // Email
   'schacpersonaluniquecode', // Contains student number
-  'sn', // Last name
+  'sn' // Last name
 ]
 
 const shibbolethCharsetMiddleware = (req, res, next) => {

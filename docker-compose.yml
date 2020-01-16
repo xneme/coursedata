@@ -4,21 +4,14 @@ services:
   app:
     build:
       context: ./
-      dockerfile: config/dev.Dockerfile
-    image: studentdata_dev
+      args:
+        BASE_PATH: /coursedata/
+    image: coursedata_dev
     volumes:
       - ./:/usr/src/app
     ports:
       - 8000:8000
-    container_name: studentdata_dev
-  db:
-    image: postgres:11
-    container_name: studentdata_db
     environment:
-      - PGDATA=/data
-      - POSTGRES_PASSWORD=postgres
-    volumes:
-      - pg_data:/data
-
-volumes:
-  pg_data:
+      - MANKELI_TOKEN=DEVTOKEN
+      - MANKELI_URL=http://localhost:9090
+    container_name: coursedata_dev
