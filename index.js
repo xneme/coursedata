@@ -41,4 +41,6 @@ if (!inProduction) {
   app.use('/', express.static('dist/'))
 }
 
-app.listen(PORT, () => { logger.info(`Started on port ${PORT}`) })
+app.listen(PORT, () => {
+  logger.info(`Started on port ${PORT}`)
+})

@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-import messages from './messageReducer'
+import correlations from './correlationsReducer'
+import grades from './gradesReducer'
 
 export default combineReducers({
-  messages,
+  correlations,
+  grades
 })
