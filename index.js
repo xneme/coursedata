@@ -3,6 +3,7 @@ require('module-alias/register')
 const chokidar = require('chokidar')
 const express = require('express')
 require('express-async-errors')
+const path = require('path')
 
 const { PORT, inProduction } = require('@util/common')
 const logger = require('@util/logger')
@@ -38,7 +39,10 @@ if (!inProduction) {
   app.use(middleware(compiler))
   app.use(hotMiddleWare(compiler))
 } else {
-  app.use('/', express.static('dist/'))
+  const DIST_PATH = path.resolve(__dirname, 'dist')
+  const INDEX_PATH = path.resolve(DIST_PATH, 'index.html')
+  app.use(express.static(DIST_PATH))
+  app.get('*', (req, res) => res.sendFile(INDEX_PATH))
 }
 
 app.listen(PORT, () => {
