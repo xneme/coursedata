@@ -2,33 +2,40 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getSurpriseGradesAction } from 'Utilities/redux/gradesReducer'
+import { Table, Loader } from 'semantic-ui-react'
 
 export default () => {
   const dispatch = useDispatch()
-  const grades = useSelector((store) => store.grades.data)
+  const grades = useSelector((store) => store.grades)
 
   useEffect(() => {
     dispatch(getSurpriseGradesAction())
   }, [])
 
-  if (!grades) return null
+  if (grades.error) return <div>Error fetching grade estimates</div>
+
+  if (grades.pending) return <Loader content="Loading" active />
+
+  if (!grades.data) return null
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-      <table>
-        <tr>
-          <th>Course</th>
-          <th>Grade</th>
-        </tr>
-        {Object.keys(grades).map((key) => {
+    <Table celled striped>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Course</Table.HeaderCell>
+          <Table.HeaderCell>Grade Estimate</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {Object.keys(grades.data).map((key) => {
           return (
-            <tr key={key}>
-              <td>{key}</td>
-              <td>{grades[key]}</td>
-            </tr>
+            <Table.Row key={key}>
+              <Table.Cell>{key}</Table.Cell>
+              <Table.Cell>{grades.data[key]}</Table.Cell>
+            </Table.Row>
           )
         })}
-      </table>
-    </div>
+      </Table.Body>
+    </Table>
   )
 }
