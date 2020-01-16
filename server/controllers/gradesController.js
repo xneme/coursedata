@@ -46,7 +46,7 @@ const getSurpriseGrades = async (req, res) => {
   })
 
   const transformedGrades = grades.data.reduce((acc, grade) => {
-    if (grade.grade === 'Hyv.' || grade.grade === 'Hyl.') return acc
+    if (isNaN(grade.grade)) return acc
     return { ...acc, [grade.learningopportunity_name]: parseInt(grade.grade) }
   }, {})
 
