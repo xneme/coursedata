@@ -4,7 +4,7 @@ import { images } from 'Utilities/common'
 import { Link } from 'react-router-dom'
 
 export default () => {
-  const [activeItem, setActiveItem] = useState('correlations')
+  const [activeItem, setActiveItem] = useState('')
 
   const handleItemClick = (e, { name }) => setActiveItem(name)
 
@@ -37,7 +37,17 @@ export default () => {
         active={activeItem === 'grades'}
         onClick={handleItemClick}
       >
-        Surprise grades
+        Grade estimates
+      </Menu.Item>
+
+      <Menu.Item
+        as={Link}
+        to={'/info'}
+        name="info"
+        active={activeItem === 'info'}
+        onClick={handleItemClick}
+      >
+        Project info
       </Menu.Item>
     </Menu>
   )

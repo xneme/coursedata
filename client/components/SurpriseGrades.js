@@ -23,15 +23,17 @@ export default () => {
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Course</Table.HeaderCell>
+          <Table.HeaderCell>Actual Grade</Table.HeaderCell>
           <Table.HeaderCell>Grade Estimate</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {Object.keys(grades.data).map((key) => {
+        {Object.keys(grades.data.surpriseGrades).map((key) => {
           return (
             <Table.Row key={key}>
               <Table.Cell>{key}</Table.Cell>
-              <Table.Cell>{grades.data[key]}</Table.Cell>
+              <Table.Cell>{grades.data.myGrades[key] || ''}</Table.Cell>
+              <Table.Cell>{grades.data.surpriseGrades[key]}</Table.Cell>
             </Table.Row>
           )
         })}

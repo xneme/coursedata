@@ -1,6 +1,11 @@
 const axios = require('axios')
 const https = require('https')
 
+const correlations = require('@root/data/correlations.json')
+const courses = Object.keys(correlations.courses)
+
+const stringSimilarity = require('string-similarity')
+
 const getMyGrades = async (req, res) => {
   if (!req.headers.schacpersonaluniquecode) {
     return res.send({})
@@ -47,7 +52,15 @@ const getSurpriseGrades = async (req, res) => {
 
   const transformedGrades = grades.data.reduce((acc, grade) => {
     if (isNaN(grade.grade)) return acc
-    return { ...acc, [grade.learningopportunity_name]: parseInt(grade.grade) }
+
+    const nameMatches = stringSimilarity.findBestMatch(
+      grade.learningopportunity_name,
+      courses
+    )
+
+    if (nameMatches.bestMatch.rating < 0.5) return acc
+
+    return { ...acc, [nameMatches.bestMatch.target]: parseInt(grade.grade) }
   }, {})
 
   const { data } = await axios({
@@ -57,7 +70,7 @@ const getSurpriseGrades = async (req, res) => {
     data: transformedGrades
   })
 
-  res.status(200).json(data)
+  res.status(200).json({ myGrades: transformedGrades, surpriseGrades: data })
 }
 
 module.exports = {
